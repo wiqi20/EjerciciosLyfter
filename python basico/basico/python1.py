@@ -1,0 +1,10 @@
+num1=10
+num2=2
+sum=num1+num2
+subst=num1-num2
+multi=num1*num2
+Division=num1/num2
+print(num1, " + ", num2, " = ", sum)
+print(num1, " - ", num2, " = ", subst)
+print(num1, " x ", num2, " = ",multi)
+print(num1, " / ", num2, " = ", Division)
