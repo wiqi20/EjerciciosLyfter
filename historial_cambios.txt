@@ -1,0 +1,48 @@
+commit d3734cab5e52b0a269e0b26820b3f4e30ad0dbe0 (origin/main, origin/HEAD)
+Author: Abner villalobosabner@gmail.com
+Date:   Fri Apr 24 21:04:12 2026 -0600
+
+    folders name changes										## locally changed folder names and moved the IT essentials files to a new folder - updated to git
+
+commit 9c2187cdcfc43a0ce91b9a5b526df492ee9b3632
+Merge: ebb4666 f4fc28a
+Author: wiqi20 47873030+wiqi20@users.noreply.github.com
+Date:   Fri Apr 24 20:52:55 2026 -0600
+
+    Merge pull request #2 from wiqi20/ejercicios-modulos
+ 
+    Modules excercises!											## merge the new folder for next Python level to git (test)
+
+
+commit f4fc28ab67d17b88a894b2c358d12c2f47e2dbb7 (origin/ejercicios-modulos, ejercicios-modulos)
+Author: Abner villalobosabner@gmail.com
+Date:   Fri Apr 24 20:48:15 2026 -0600
+
+    Modules excercises!											## added new folder for next Python level to git (test printing Modules!!)
+
+commit ebb46665c9981a07fbf4e2ea630c2414f1b7a995
+Merge: 194656b cde5927
+Author: wiqi20 47873030+wiqi20@users.noreply.github.com
+Date:   Fri Apr 24 20:38:59 2026 -0600
+
+    Merge pull request #1 from wiqi20/ejercicios-listos
+ 
+    Uploading first excercises										## first merge pull request uploading last 3 commits from ejercicios-listos
+
+commit cde59273726080406fe370b2dfbcbe84bbbe4450 (origin/ejercicios-listos, ejercicios-listos)
+Author: Abner villalobosabner@gmail.com
+Date:   Fri Apr 24 20:34:06 2026 -0600
+
+    Applied feedback on dictionary excercises								## update on file ejercicio_diccionarios1.py small change on print
+
+commit fc6d649895fc3f5485880b6eccca339256628e52
+Author: Abner villalobosabner@gmail.com
+Date:   Fri Apr 24 20:20:54 2026 -0600
+
+    Uploading first excercises     									## added the first excercises to git
+
+commit 194656b17284d9129b7ccece34e71189d4688829
+Author: wiqi20 47873030+wiqi20@users.noreply.github.com
+Date:   Fri Apr 24 19:53:17 2026 -0600
+
+    Initial commit   											## execute first git init
