@@ -1,6 +1,13 @@
 #actions: tendrá toda la lógica de las acciones del menú, excepto las de exportar e importar datos.
 import re
-students_list=[]
+#students_list=[]
+#students_average_score_list=[]
+students_list = [
+    {'Name': 'Abner Villalobos', 'Section': '11A', 'Spanish': 100, 'English': 58, 'Social Studies': 80, 'Science': 98},
+    {'Name': 'Abigail Guzman', 'Section': '11C', 'Spanish': 98, 'English': 99, 'Social Studies': 100, 'Science': 78},
+    {'Name': 'Samuel Makai', 'Section': '11B', 'Spanish': 88, 'English': 79, 'Social Studies': 80, 'Science': 99},
+    {'Name': 'Sarahi Villalobos', 'Section': '11A', 'Spanish': 100, 'English': 95, 'Social Studies': 100, 'Science': 89}
+]
 # contains all related to add new student including the proper validations to each input
 def validate_name():
     while True:
@@ -58,9 +65,6 @@ def request_student_info (students_list):
     students_dict["Science"]=validate_grade("Science")
     students_list.append(students_dict)
     print("\nStudent added correctly:")
-    #print(check_students_list(students_list))
-    # print("\nesta es la lista\n")
-    # print(students_list)
     return(check_students_list(students_list))
 
 
@@ -69,14 +73,61 @@ def check_students_list(students_list):
     print("-"*80)
     for student in students_list:
         print(f"{student['Name']:32} {student['Section']:8} {student['Spanish']:5} {student['English']:5} {student['Social Studies']:11} {student['Science']:12}")
-    # for student in students_list:
-    #     print(f"Name: {student["Name"]}")
-    #     print(f"Section: {student["Section"]}")
-    #     print(f"Spanish: {student["Spanish"]}")
-    #     print(f"English: {student["English"]}")
-    #     print(f"Social Studies: {student["Social Studies"]}")
-    #     print(f"Science: {student["Science"]}")
-    #     print("-"*30)
 
 
-request_student_info(students_list)
+#calculate average score per student and create new list to use it later only with average score
+def calculate_average_score(students_list):
+    students_average_score_list=[]
+    for student in students_list:
+        average_score= (student["Spanish"]+student["English"]+student["Social Studies"]+student["Science"])/4
+        students_average_score_list.append({
+            "Name": student["Name"],
+            "Section": student["Section"],
+            "Average Score": round(average_score,2)
+        })
+    return students_average_score_list
+
+
+#this is the 4 option in menu Show All Students Average Score
+def show_all_students_average_score(students_average_score_list):
+    print(f"{'Name':20} {'Section':10} {'Average Score'}")
+    print("-"*46)
+    for student in students_average_score_list:
+        print(f"{student["Name"]:20} {student["Section"]:10} {student["Average Score"]}")
+
+
+#this is the 3 option in menu Show Top 3 for Students Average Score
+def top_students_average_score(students_average_score_list):
+    sorted_students_score=sorted(students_average_score_list, key=lambda x: x["Average Score"], reverse=True)
+    print(f"{'Name':20} {'Section':10} {'Average Score'}")
+    print("-"*46)
+    for student in sorted_students_score[:3]:
+        print(f"{student["Name"]:20} {student["Section"]:10} {student["Average Score"]}")
+
+
+def delete_student(students_list):
+    name=validate_name()
+    section=validate_section()
+    if student_exists(name, section, students_list):
+        students_list[:]=[stdnt for stdnt in students_list if not (stdnt["Name"].lower()==name.lower() and stdnt["Section"].upper()== section.upper())]
+        print(f"The Student {name} from section {section} was deleted correctly")
+    else:
+        print(f"The Student {name} from section {section} doesn't exist")
+
+    #     delete_option=int(input("Do you want to delete this Student\n1. Yes\n2. No\n "))
+    #             try:
+    #                 if delete_option==1:
+    #                     print("Deleting the entered Student")
+    #                     students_list.p
+    #                 elif delete_option ==2:
+    #                     break
+    #             except:
+    #                 print("please select a valid option")
+    #         else:
+    #             print("The Student you entered doesn't exist!!")
+    #             break
+    # except:
+    #     print("please enter a valid option")
+
+#all_students_average_score(students_list)
+#request_student_info(students_list)
