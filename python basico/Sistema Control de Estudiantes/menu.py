@@ -1,7 +1,7 @@
 #menu: tendrá toda la lógica relacionada al menú de opciones.
-from actions import request_student_info, check_students_list, top_students_average_score, show_all_students_average_score, calculate_average_score, delete_student,students_list
+from actions import request_student_info, check_students_list, top_students_average_score, show_all_students_average_score, delete_student, show_failed_students
 def main_menu():
-    students_average_score_list = calculate_average_score(students_list)
+    students_list = []
     while True:
         print("1. Enter new Student")
         print("2. Check Students List")
@@ -52,7 +52,7 @@ def main_menu():
                         option_secundary_menu=int(input("\nSelect an option: "))
                         if option_secundary_menu==3:
                             print("Showing Top 3 for Students Average Score\n")
-                            top_students_average_score(students_average_score_list)
+                            top_students_average_score(students_list)
                         elif option_secundary_menu==0:
                             break
                         else:
@@ -67,7 +67,7 @@ def main_menu():
                         option_secundary_menu=int(input("\nSelect an option: "))
                         if option_secundary_menu==4:
                             print("Showing All Students Average Score")
-                            show_all_students_average_score(students_average_score_list)
+                            show_all_students_average_score(students_list)
                         elif option_secundary_menu==0:
                             break
                         else:
@@ -124,7 +124,8 @@ def main_menu():
                     try:    
                         option_secundary_menu=int(input("\nSelect an option: "))
                         if option_secundary_menu==8:
-                            print("Show Failed Students")
+                            print("\nShowing Failed Students\n")
+                            show_failed_students(students_list)
                         elif option_secundary_menu==0:
                             break
                         else:
@@ -138,4 +139,4 @@ def main_menu():
                 print("Select a valid option")
         except ValueError:
             print("Enter an integer number")
-main_menu()
+#main_menu()
