@@ -1,5 +1,7 @@
 #menu: tendrá toda la lógica relacionada al menú de opciones.
+import csv
 from actions import request_student_info, check_students_list, top_students_average_score, show_all_students_average_score, delete_student, show_failed_students
+from data import save_students_csv,load_students_csv
 def main_menu():
     students_list = []
     while True:
@@ -81,7 +83,9 @@ def main_menu():
                     try:    
                         option_secundary_menu=int(input("\nSelect an option: "))
                         if option_secundary_menu==5:
-                            print("Export Data to CSV")
+                            print("Export Data to CSV\n")
+                            path=input("CSV file path: ")
+                            save_students_csv(path,students_list)
                         elif option_secundary_menu==0:
                             break
                         else:
@@ -95,7 +99,9 @@ def main_menu():
                     try:    
                         option_secundary_menu=int(input("\nSelect an option: "))
                         if option_secundary_menu==6:
-                            print("Import Data From CSV")
+                            print("Import Data From CSV\n")
+                            path=input("CSV file path: ")
+                            load_students_csv(path,students_list)
                         elif option_secundary_menu==0:
                             break
                         else:

@@ -141,8 +141,10 @@ def show_failed_students(students_list):
             "Subject": "Science",
             "Score": student["Science"]
         })
-    print(f"{'Name':20} {'Section':10} {'Subject':15}{'Score'}")
-    print("-"*55)
-    for student in failed_students_list:
-        print(f"{student['Name']:20} {student['Section']:10} {student['Subject']:15} {student['Score']}")
-
+    if not failed_students_list:
+        print("There are no failed students this time.")
+    else:
+        print(f"{'Name':20} {'Section':10} {'Subject':15}{'Score'}")
+        print("-"*55)
+        for student in failed_students_list:
+            print(f"{student['Name']:20} {student['Section']:10} {student['Subject']:15} {student['Score']}")
