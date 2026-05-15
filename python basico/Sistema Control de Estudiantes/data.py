@@ -1,8 +1,10 @@
 #data: tendrá toda la lógica de exportación e importación de datos.
 import csv
-from actions import check_students_list
 
 def save_students_csv(path,students_list):
+    if not students_list:
+        print("There are no available data to export")
+        return
     with open (path, "w", newline="", encoding="utf-8") as file:
         writer= csv.writer(file)
         writer.writerow(["Name","Section","Spanish","English","Social Studies","Science"])

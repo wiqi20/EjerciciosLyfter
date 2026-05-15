@@ -5,7 +5,7 @@ from data import save_students_csv,load_students_csv
 def main_menu():
     students_list = []
     while True:
-        print("1. Enter new Student")
+        print("\n1. Enter new Student")
         print("2. Check Students List")
         print("3. Show Top 3 for Students Average Score ")
         print("4. Show All Students Average Score")
@@ -17,127 +17,37 @@ def main_menu():
         try:
             option_main_menu=int(input("\nSelect an option: "))
             if option_main_menu==1:
-                print("1. Enter new Student")
-                print("0. Return to main menu")
-                while True:
-                    try:    
-                        option_secundary_menu=int(input("\nSelect an option: "))
-                        if option_secundary_menu==1:
-                            print("Enter new Student")
-                            request_student_info(students_list)
-                        elif option_secundary_menu==0:
-                            break
-                        else:
-                            print("Select a valid option")
-                    except ValueError:
-                        print("Enter an integer number")
+                print("\nAdding new Student\n")
+                request_student_info(students_list)
             elif option_main_menu==2:
-                print("2. Check Students List")
-                print("0. Return to main menu")
-                while True:
-                    try:    
-                        option_secundary_menu=int(input("\nSelect an option: "))
-                        if option_secundary_menu==2:
-                            print("Check Students List")
-                            check_students_list(students_list)
-                        elif option_secundary_menu==0:
-                            break
-                        else:
-                            print("Select a valid option")
-                    except ValueError:
-                        print("Enter an integer number")
+                print("\nCheck Students List\n")
+                check_students_list(students_list)
             elif option_main_menu==3:
-                print("3. Show Top 3 for Students Average Score")
-                print("0. Return to main menu")
-                while True:
-                    try:    
-                        option_secundary_menu=int(input("\nSelect an option: "))
-                        if option_secundary_menu==3:
-                            print("Showing Top 3 for Students Average Score\n")
-                            top_students_average_score(students_list)
-                        elif option_secundary_menu==0:
-                            break
-                        else:
-                            print("Select a valid option")
-                    except ValueError:
-                        print("Enter an integer number")
+                print("\nShowing Top 3 for Students Average Score\n")
+                top_students_average_score(students_list)
             elif option_main_menu==4:
-                print("4. Show All Students Average Score")
-                print("0. Return to main menu")
-                while True:
-                    try:    
-                        option_secundary_menu=int(input("\nSelect an option: "))
-                        if option_secundary_menu==4:
-                            print("Showing All Students Average Score")
-                            show_all_students_average_score(students_list)
-                        elif option_secundary_menu==0:
-                            break
-                        else:
-                            print("Select a valid option")
-                    except ValueError:
-                        print("Enter an integer number")
+                print("\nShowing All Students Average Score\n")
+                show_all_students_average_score(students_list)
             elif option_main_menu==5:
-                print("5. Export Data to CSV")
-                print("0. Return to main menu")
-                while True:
-                    try:    
-                        option_secundary_menu=int(input("\nSelect an option: "))
-                        if option_secundary_menu==5:
-                            print("Export Data to CSV\n")
-                            path=input("CSV file path: ")
-                            save_students_csv(path,students_list)
-                        elif option_secundary_menu==0:
-                            break
-                        else:
-                            print("Select a valid option")
-                    except ValueError:
-                        print("Enter an integer number")
+                if students_list:
+                    print("\nExport Data to CSV\n")
+                    path=input("CSV file path: ")
+                    save_students_csv(path,students_list)
+                else:
+                    print("There are no available data to export")
             elif option_main_menu==6:
-                print("6. Import Data From CSV")
-                print("0. Return to main menu")
-                while True:
-                    try:    
-                        option_secundary_menu=int(input("\nSelect an option: "))
-                        if option_secundary_menu==6:
-                            print("Import Data From CSV\n")
-                            path=input("CSV file path: ")
-                            load_students_csv(path,students_list)
-                        elif option_secundary_menu==0:
-                            break
-                        else:
-                            print("Select a valid option")
-                    except ValueError:
-                        print("Enter an integer number")
+                try:
+                    print("\nImport Data From CSV\n")
+                    path=input("CSV file path: ")
+                    load_students_csv(path,students_list)
+                except FileNotFoundError:
+                    print("Entered path not found")
             elif option_main_menu==7:
-                print("7. Delete Student")
-                print("0. Return to main menu")
-                while True:
-                    try:    
-                        option_secundary_menu=int(input("\nSelect an option: "))
-                        if option_secundary_menu==7:
-                            print("Delete Student")
-                            delete_student(students_list)
-                        elif option_secundary_menu==0:
-                            break
-                        else:
-                            print("Select a valid option")
-                    except ValueError:
-                        print("Enter an integer number")
+                print("\nDelete Student\n")
+                delete_student(students_list)
             elif option_main_menu==8:
-                print("8. Show Failed Students")
-                print("0. Return to main menu")
-                while True:
-                    try:    
-                        option_secundary_menu=int(input("\nSelect an option: "))
-                        if option_secundary_menu==8:
-                            print("\nShowing Failed Students\n")
-                            show_failed_students(students_list)
-                        elif option_secundary_menu==0:
-                            break
-                        else:
-                            print("Select a valid option")
-                    except ValueError:
-                        print("Enter an integer number")
+                print("\nShowing Failed Students\n")
+                show_failed_students(students_list)
             elif option_main_menu==9:
                 print("Closing the system...")
                 break
@@ -145,4 +55,3 @@ def main_menu():
                 print("Select a valid option")
         except ValueError:
             print("Enter an integer number")
-#main_menu()

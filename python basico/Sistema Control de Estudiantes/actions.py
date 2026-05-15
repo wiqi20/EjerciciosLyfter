@@ -1,6 +1,7 @@
 #actions: tendrá toda la lógica de las acciones del menú, excepto las de exportar e importar datos.
 import re
 # contains all related to add new student including the proper validations to each input
+
 def validate_name():
     while True:
         name=input("Name: ").strip()
@@ -41,7 +42,6 @@ def validate_grade(subject):
 
 def request_student_info (students_list):
     students_dict={}
-    print("Adding new Student\n")
     while True:
         name=validate_name()
         section=validate_section()
@@ -61,6 +61,10 @@ def request_student_info (students_list):
 
 
 def check_students_list(students_list):
+    if not students_list:
+        print("There are no students in data base")
+        return
+    
     print(f"{'Name':30} {'Section':7} {'Spanish':7} {'English':8} {'Social Studies':15} {'Science':7}")
     print("-"*80)
     for student in students_list:
@@ -69,6 +73,9 @@ def check_students_list(students_list):
 
 #this is the 3 option in menu Show Top 3 for Students Average Score
 def top_students_average_score(students_list):
+    if not students_list:
+        print("There are no students in data base")
+        return
     students_average_score_list=[]
     for student in students_list:
         average_score= (student["Spanish"]+student["English"]+student["Social Studies"]+student["Science"])/4
@@ -84,8 +91,8 @@ def top_students_average_score(students_list):
         print(f"{student['Name']:20} {student['Section']:10} {student['Average Score']}")
 
 
-#this is the 4 option in menu Show All Students Average Score
-def show_all_students_average_score(students_list):
+#this funtion calculate the average score per student
+def show_individual_average_score(students_list):
     students_average_score_list=[]
     for student in students_list:
         average_score= (student["Spanish"]+student["English"]+student["Social Studies"]+student["Science"])/4
@@ -100,17 +107,40 @@ def show_all_students_average_score(students_list):
         print(f"{student['Name']:20} {student['Section']:10} {student['Average Score']}")
 
 
+#this is the 4 option in menu Show All Students Average Score
+def show_all_students_average_score(students_list):
+    if not students_list:
+        print("There are no students in data base")
+        return
+    students_scores_list=[]
+    for student in students_list:
+        for subject in ["Spanish", "English", "Social Studies","Science"]:
+            students_scores_list.append(student[subject])
+    all_students_average_score=sum(students_scores_list)/len(students_scores_list)
+    print("The average score for students in data base is: ",round(all_students_average_score,2))
+
+
 def delete_student(students_list):
+    if not students_list:
+        print("There are no students in data base")
+        return
     name=validate_name()
     section=validate_section()
     if student_exists(name, section, students_list):
-        students_list[:]=[stdnt for stdnt in students_list if not (stdnt["Name"].lower()==name.lower() and stdnt["Section"].upper()== section.upper())]
-        print(f"The Student {name} from section {section} was deleted correctly")
+        delete=input(f"The Student {name} from section {section} exist, do you want to delete it (Y/N): ")
+        if delete.lower()=="y":
+            students_list[:]=[stdnt for stdnt in students_list if not (stdnt["Name"].lower()==name.lower() and stdnt["Section"].upper()== section.upper())]
+            print(f"The Student {name} from section {section} was deleted correctly")
+        else:
+            return
     else:
         print(f"The Student {name} from section {section} doesn't exist")
 
 
 def show_failed_students(students_list):
+    if not students_list:
+        print("There are no students in data base")
+        return
     failed_students_list=[]
     for student in students_list:
         if student["Spanish"] <60:
@@ -141,10 +171,10 @@ def show_failed_students(students_list):
             "Subject": "Science",
             "Score": student["Science"]
         })
-    if not failed_students_list:
-        print("There are no failed students this time.")
-    else:
-        print(f"{'Name':20} {'Section':10} {'Subject':15}{'Score'}")
-        print("-"*55)
-        for student in failed_students_list:
-            print(f"{student['Name']:20} {student['Section']:10} {student['Subject']:15} {student['Score']}")
+        if not failed_students_list:
+            print("There are no failed students this time.")
+        else:
+            print(f"{'Name':20} {'Section':10} {'Subject':15}{'Score'}")
+            print("-"*55)
+            for student in failed_students_list:
+                print(f"{student['Name']:20} {student['Section']:10} {student['Subject']:15} {student['Score']}")
