@@ -15,7 +15,7 @@ def validate_name():
 
 
 def validate_section(): #validate section using regular expresions
-    pattern = r"^\d{2}[A-Z]$"
+    pattern = r"^\d{1,2}[A-Z]$"
     while True:
         section=input("Section (example: 11A, 12B): ").strip().upper()
         if re.match(pattern,section):
