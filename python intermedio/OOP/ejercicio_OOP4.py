@@ -5,28 +5,15 @@ class Head:
         self.mouth = 1
 
 
-class Torso:    
-    def __init__(self):
-        self.head = 1
-        self.arms = 2
-        self.belly = 1
-
-
-class Arm:
-    def __init__(self,side):
-        self.side = side
-        self.hand = Hand()
-
-
 class Hand:
     def __init__(self):
         self.fingers = 5
 
 
-class Leg:
-    def __init__(self,side):
+class Arm:
+    def __init__(self,side,hand):
         self.side = side
-        self.feet = Feet()
+        self.hand = hand
 
 
 class Feet:
@@ -34,24 +21,44 @@ class Feet:
         self.toes = 5
 
 
+class Leg:
+    def __init__(self,side,feet):
+        self.side = side
+        self.feet = feet
+
+
+class Torso:    
+    def __init__(self,head,right_arm,left_arm,right_leg,left_leg):
+        self.head = head
+        self.right_arm = right_arm
+        self.left_arm = left_arm
+        self.right_leg = right_leg
+        self.left_leg = left_leg
+
+
 class Human:
-    def __init__(self, name):
+    def __init__(self, name, torso):
         self.name = name
-        self.head = Head()
-        self.torso = Torso()
-        self.left_arm = Arm("left")
-        self.right_arm = Arm("right")
-        self.left_leg = Leg("left")
-        self.right_leg = Leg("right")
+        self.torso = torso
 
 
     def describe(self):
         print(f"Human: {self.name}")
-        print(f"Head -> Eyes: {self.head.eyes}, Nose: {self.head.nose}, Mouth: {self.head.mouth}")
-        print(f"Torso -> Head: {self.torso.head}, Arms: {self.torso.arms}, Belly: {self.torso.belly}")
-        print(f"Arms -> Left hand fingers: {self.left_arm.hand.fingers}, Right hand fingers: {self.right_arm.hand.fingers}")
-        print(f"Legs -> Left foot toes: {self.left_leg.feet.toes}, Right foot toes: {self.right_leg.feet.toes}")
+        print(f"Head -> Eyes: {self.torso.head.eyes}, Nose: {self.torso.head.nose}, Mouth: {self.torso.head.mouth}")
+        print(f"Arms -> Left hand fingers: {self.torso.left_arm.hand.fingers}, Right hand fingers: {self.torso.right_arm.hand.fingers}")
+        print(f"Legs -> Left foot toes: {self.torso.left_leg.feet.toes}, Right foot toes: {self.torso.right_leg.feet.toes}")
 
 
-person = Human("Abner")
+head = Head()
+left_hand = Hand()
+right_hand = Hand()
+left_arm = Arm("left", left_hand)
+right_arm = Arm("right", right_hand)
+left_feet = Feet()
+right_feet = Feet()
+left_leg = Leg("left", left_feet)
+right_leg = Leg("right", right_feet)
+torso = Torso(head, right_arm, left_arm, right_leg, left_leg)
+
+person = Human("Abner",torso)
 person.describe()

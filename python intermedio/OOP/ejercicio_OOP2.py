@@ -28,10 +28,13 @@ class Bus:
 person_1 = Person("Abner")
 person_2 = Person("Abel")
 person_3 = Person("Miguel")
+person_4 = Person("Petronilo")
 
 bus = Bus(max_passengers=3)
 bus.add_passenger(person_1)
 bus.add_passenger(person_2)
 bus.add_passenger(person_3)
+bus.add_passenger(person_4)
 
 bus.delete_passenger(person_2)
+bus.delete_passenger(person_4)
