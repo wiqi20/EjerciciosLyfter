@@ -39,25 +39,34 @@ def validate_grade(subject):
         except ValueError:
             print("Error: Enter a valid integer number.")
 
+class Student:
+    def __init__(self,name, section, spanish, english, social_studies, science):
+        self.name = name
+        self.section = section
+        self.spanish = int (spanish)
+        self.english = int (english)
+        self.social_studies = int (social_studies)
+        self.science = int (science)
 
-def request_student_info (students_list):
-    students_dict={}
-    while True:
-        name=validate_name()
-        section=validate_section()
-        if student_exists(name, section, students_list):
-            print("Error: The entered Student and Section already exists")
-        else:
-            students_dict["Name"]=name
-            students_dict["Section"]=section
-            break
-    students_dict["Spanish"]=validate_grade("Spanish")
-    students_dict["English"]=validate_grade("English")
-    students_dict["Social Studies"]=validate_grade("Social Studies")
-    students_dict["Science"]=validate_grade("Science")
-    students_list.append(students_dict)
-    print("\nStudent added correctly:")
-    return(check_students_list(students_list))
+
+    def request_student_info (students_list):
+        while True:
+            name=validate_name()
+            section=validate_section()
+            if student_exists(name, section, students_list):
+                print("Error: The entered Student and Section already exists")
+            else:
+                break
+        spanish = validate_grade("Spanish")
+        english = validate_grade("English")
+        social_studies = validate_grade("Social Studies")
+        science = validate_grade("Science")
+        
+        student = Student(name, section, spanish, english, social_studies, science)
+        students_list.append(student)
+
+        print("\nStudent added correctly:")
+        return(check_students_list(students_list))
 
 
 def check_students_list(students_list):
@@ -68,7 +77,7 @@ def check_students_list(students_list):
     print(f"{'Name':30} {'Section':7} {'Spanish':7} {'English':8} {'Social Studies':15} {'Science':7}")
     print("-"*80)
     for student in students_list:
-        print(f"{student['Name']:32} {student['Section']:8} {student['Spanish']:5} {student['English']:5} {student['Social Studies']:11} {student['Science']:12}")
+        print(f"{student.name:32} {student.section:8} {student.spanish:5} {student.english:5} {student.social_studies:11} {student.science:12}")
 
 
 #this is the 3 option in menu Show Top 3 for Students Average Score

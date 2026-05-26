@@ -1,6 +1,7 @@
 #menu: tendrá toda la lógica relacionada al menú de opciones.
 import csv
-from actions import request_student_info, check_students_list, top_students_average_score, show_all_students_average_score, delete_student, show_failed_students
+from actions import check_students_list, top_students_average_score, show_all_students_average_score, delete_student, show_failed_students
+from actions import Student
 from data import save_students_csv,load_students_csv
 def main_menu():
     students_list = []
@@ -18,7 +19,7 @@ def main_menu():
             option_main_menu=int(input("\nSelect an option: "))
             if option_main_menu==1:
                 print("\nAdding new Student\n")
-                request_student_info(students_list)
+                Student.request_student_info(students_list)
             elif option_main_menu==2:
                 print("\nCheck Students List\n")
                 check_students_list(students_list)
