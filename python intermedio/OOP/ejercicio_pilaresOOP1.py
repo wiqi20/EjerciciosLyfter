@@ -19,25 +19,32 @@ class BankAccount:
             self.balance -= amount
             return self.balance
         else:
-            raise ValueError ("insufficient funds")
+            raise ValueError("insufficient funds")
 
 class SavingsAccount(BankAccount):
     def __init__(self, balance=0, min_balance=100):
         super().__init__(balance)
         self.min_balance = min_balance
-    
+
     def withdraw(self, amount):
         if self.balance - amount >= self.min_balance:
             self.balance -= amount
             return self.balance
         else:
-            print(f"the withdraw amount lower the balance than the minimum balance allowed: {self.min_balance}")
-            return self.balance
+            raise ValueError(f"The withdrawal would lower the balance below the minimum allowed: {self.min_balance}")
 
+sa = SavingsAccount(balance=500, min_balance=200)
 
-sa=SavingsAccount(balance=500, min_balance=200)
+print("Initial Balance:", sa.balance)
 
-print(sa.balance)
-sa.withdraw(250)
-print(sa.balance)
-sa.withdraw(100)
+try:
+    sa.withdraw(250)
+    print("New Balance: ", sa.balance)
+except ValueError as e:
+    print("Error:", e)
+
+try:
+    sa.withdraw(100)
+    print("New Balance: ", sa.balance)
+except ValueError as e:
+    print("Error:", e)
