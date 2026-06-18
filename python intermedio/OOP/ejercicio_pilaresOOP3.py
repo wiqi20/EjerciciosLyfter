@@ -7,6 +7,9 @@ from abc import ABC, abstractmethod
 import math
 
 class Shape(ABC):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
     @abstractmethod
     def calculate_perimeter(self):
         pass
@@ -15,7 +18,8 @@ class Shape(ABC):
         pass
 
 class Colored:
-    def __init__(self, color="black"):
+    def __init__(self, color="black", *args, **kwargs):
+        super().__init__(*args,**kwargs)
         self.color = color
 
     def show_color(self):
@@ -23,8 +27,7 @@ class Colored:
 
 class Circle(Shape,Colored):
     def __init__(self,radius,color="black"):
-        Shape.__init__(self)
-        Colored.__init__(self, color)
+        super().__init__(color=color)
         self.radius= radius
 
     def calculate_area(self):
@@ -37,8 +40,7 @@ class Circle(Shape,Colored):
 
 class Square(Shape,Colored):
     def __init__(self,side,color="black"):
-        Shape.__init__(self)
-        Colored.__init__(self, color)
+        super().__init__(color=color)
         self.side= side
     def calculate_area(self):
         area = self.side**2
@@ -49,8 +51,7 @@ class Square(Shape,Colored):
 
 class Rectangle(Shape,Colored):
     def __init__(self,width,height,color="black"):
-        Shape.__init__(self)
-        Colored.__init__(self, color)
+        super().__init__(color=color)
         self.width= width
         self.height= height
     def calculate_area(self):

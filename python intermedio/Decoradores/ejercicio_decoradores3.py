@@ -16,8 +16,7 @@ class User:
 
 
 def validate_adult(func):
-    def wrapper(name, year, month, day, *args, **kwargs):
-        user = User(name, date(year, month, day))
+    def wrapper(user: User, *args, **kwargs):
         if user.age < 18:
             raise ValueError(f"The User {user.name} is {user.age}, is not an adult")
         return func(user, *args, **kwargs)
@@ -29,7 +28,7 @@ def access_service(user: User):
     return "Access granted"
 
 try:
-    access_service("Ana", 2000, 6, 1)
-    access_service("Sara", 2010, 6, 1)
+    access_service(User("Ana",date(2000, 6, 1)))
+    access_service(User("Sara",date(2010, 6, 1)))
 except ValueError as e:
     print("Error:", e)
