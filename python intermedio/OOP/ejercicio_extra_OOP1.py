@@ -21,8 +21,10 @@ class Rectangle:
 
 
 try:
-    re=Rectangle(300,-250)
+    width= float(input("Enter width: "))
+    height= float(input("Enter height: "))
+    re=Rectangle(width,height)
     print(f"the rectangle area is: ",round(re.get_area(),2))
     print(f"the rectangle perimeter is: ",round(re.get_perimeter(),2))
 except ValueError as e:
-    print("Error: ",e)
+    print("Error:",e)
