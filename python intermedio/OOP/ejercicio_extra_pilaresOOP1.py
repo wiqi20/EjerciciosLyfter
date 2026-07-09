@@ -5,20 +5,20 @@ class Employee:
     
     
     @property
-    def get_name(self):
+    def name(self):
         return self.__name
 
-    @get_name.setter
-    def get_name(self,new_name):
+    @name.setter
+    def name(self,new_name):
         self.__name=new_name
 
 
     @property
-    def get_salary(self):
+    def salary(self):
         return self.__salary
 
-    @get_salary.setter
-    def get_salary(self,new_salary):
+    @salary.setter
+    def salary(self,new_salary):
         if new_salary>=0:
             self.__salary=new_salary
         else:
@@ -27,15 +27,15 @@ class Employee:
     
     def promote(self,percentage):
         if percentage>0:
-            self.__salary*=(1+percentage/100)
+            self.__salary*=(1+percentage)
             return self.__salary
         else:
             raise ValueError("Promotion percentage must be possitive")
 try:
     emp= Employee("Abner",3000)
-    print(f"Employee name: {emp.get_name}")
-    print(f"Employee salary: {emp.get_salary}")
-    emp.promote(10)
-    print(f"Employee salary after promotion: {round(emp.get_salary,2)}")
+    print(f"Employee name: {emp.name}")
+    print(f"Employee salary: {emp.salary}")
+    emp.promote(0.1)
+    print(f"Employee salary after promotion: {round(emp.salary,2)}")
 except ValueError as e:
     print("Error:",e)
