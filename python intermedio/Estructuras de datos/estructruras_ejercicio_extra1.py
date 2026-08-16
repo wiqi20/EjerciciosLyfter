@@ -1,20 +1,19 @@
 class Node:
-    data:str
-
     def __init__(self, data, next=None):
         self.data = data
         self.next = next
 
 class Queue():
-
     def __init__(self, head=None):
         self.head = head
 
     def print_all(self):
         current_node = self.head
+        elements = []
         while current_node is not None:
-            print(current_node.data)
+            elements.append(current_node.data)
             current_node = current_node.next
+        print(" -> ".join(elements))
 
     def enqueue(self, data):
         new_node = Node(data)
@@ -28,9 +27,9 @@ class Queue():
 
     def dequeue(self):
         if self.head:
-            removed_node = self.head
+            removed_data = self.head.data
             self.head = self.head.next
-            return removed_node
+            return removed_data
         return None
 
 q = Queue()
@@ -44,7 +43,7 @@ q.print_all()
 
 print("\nDEQUEUE:")
 removed = q.dequeue()
-print("Nodo eliminado:", removed.data if removed else None)
+print("Nodo eliminado:", removed if removed else None)
 
 print("\nCola después de dequeue:")
 q.print_all()

@@ -25,12 +25,12 @@ class LinkedList:
     def delete(self,data):
         current=self.head
         previous=None
-        while current.next:
+        while current:
             if current.data == data:
                 if previous:
                     previous.next = current.next
                 else:
-                    self.heads = current.next
+                    self.head= current.next
                 return True
             previous = current
             current = current.next
