@@ -32,22 +32,31 @@ class Stack:
             self.head = current_node.next
             return current_node.data
 
-third_node = Node("1")
+    def bubble_sort(self):
+        if self.head is None:
+            return
+        swapped= True
+        while swapped:
+            swapped = False
+            current_node = self.head
+            while current_node.next is not None:
+                next_node = current_node.next
+                if current_node.data > next_node.data:
+                    current_node.data, next_node.data = next_node.data, current_node.data
+                    swapped = True
+                current_node = current_node.next
+
+third_node = Node("3")
 second_node = Node("2")
-first_node = Node("3")
+first_node = Node("1")
 try:
     my_stack = Stack(first_node)
     my_stack.push(second_node)
     my_stack.push(third_node)
-    print("\nBefore Pop")
+    print("\nBefore Bubble sort")
     my_stack.print_structure()
-    my_stack.pop()
-    print("\nAfter Pop")
+    print("\nAfter Bubble sort")
+    my_stack.bubble_sort()
     my_stack.print_structure()
-    my_stack.pop()
-    print("\nAfter Pop")
-    my_stack.print_structure()
-    my_stack.pop()
-    my_stack.pop()
 except Exception as e:
     print("Error:", e)
